@@ -1,0 +1,81 @@
+default_platform(:android)
+
+platform :android do
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc 'Android: Increment versionCode and set versionName to package.json version.'
+  private_lane :inc_ver_and do
+      package = load_json(json_path: "./package.json")
+      increment_version_code(
+        gradle_file_path: "./android/app/build.gradle",
+      )
+
+      increment_version_name(
+        gradle_file_path: "./android/app/build.gradle",
+        version_name: package['version']
+      )
+  end
+
+  desc 'Bump build numbers, and set the version to match the pacakage.json version.'
+    lane :bump do
+      inc_ver_and
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "clean assembleDebug")
+    upload_to_play_store(
+          track: 'internal',
+          json_key: ENV["JSON_KEY"]
+    )
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do |options|
+
+
+    store_password = prompt(text: "Signing Store Password: ", secure_text: true)
+    key_password = prompt(text: "Alias Key Password: ", secure_text: true)
+    aliasKey = prompt(text: "Alias Key: ", secure_text: true)
+    releaseFilePath = ENV["RELEASE_KEYSTORE"]
+        gradle(
+              task: 'clean assembleRelease',
+              properties: {
+                "android.injected.signing.store.file" => releaseFilePath,
+                "android.injected.signing.store.password" => store_password,
+                "android.injected.signing.key.alias" => aliasKey,
+                "android.injected.signing.key.password" => key_password,
+              }
+        )
+    upload_to_play_store(
+        track: "internal",
+        package_name: "com.makrab",
+        json_key: ENV["JSON_KEY"],
+    )
+  end
+
+  desc "Deploy to Huawei App Gallery"
+  lane :release_appgallery do
+
+    client_id = prompt(text: "Huawei App Gallery client_id: ", secure_text: true)
+    client_secret = prompt(text: "Huawei App Gallery client_secret: ", secure_text: true)
+    app_id = prompt(text: "Huawei App Gallery app_id: ", secure_text: false)
+
+    gradle( # 2
+      task: 'assemble',
+      build_type: 'Release'
+    )
+    huawei_appgallery_connect( # 3
+      client_id: client_id,
+      client_secret: client_secret,
+      app_id: app_id,
+      is_aab: false,
+      submit_for_review: true,
+      apk_path: "./app/build/outputs/apk/release/app-universal-release.apk"
+    )
+  end
+end
