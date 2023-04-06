@@ -1,0 +1,15 @@
+export enum AppColors {
+  Main = '#EDEFF6',
+  ButtonTextColor = '#416CDE',
+  White = '#FFFFFF',
+  ButtonColor = '#DBE2F6',
+  Red = '#DA2A34',
+  Success = '#808080',
+  SuccessOpacity = '#bdb8b8',
+  TaskColor = '#878D9A',
+  ModalButtonColor = '#EBEDF2',
+  Black = '#000000',
+  InactiveButton = '#C9CDDA',
+  ActiveOpacity = '#F3FFF2',
+  Active = '#2EA41B',
+}
