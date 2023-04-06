@@ -1,0 +1,261 @@
+import {StyleSheet} from 'react-native';
+import {AppColors, Fonts} from '../../theme';
+import Device from 'react-native-device-detection';
+
+const OrderCardStyles = StyleSheet.create({
+  taskContainer: {
+    paddingTop: 18,
+    paddingBottom: Device.isTablet ? 16 : 5,
+    paddingLeft: Device.isTablet ? 2 : 1,
+    paddingRight: 14,
+    backgroundColor: AppColors.White,
+  },
+  taskContainerCompleted: {
+    paddingTop: 25,
+    paddingBottom: Device.isTablet ? 16 : 10,
+    paddingLeft: Device.isTablet ? 2 : 1,
+    paddingRight: 14,
+    backgroundColor: AppColors.SuccessOpacity,
+  },
+  taskContainerActive: {
+    paddingTop: 25,
+    paddingBottom: Device.isTablet ? 16 : 10,
+    paddingLeft: Device.isTablet ? 2 : 1,
+    paddingRight: 14,
+    backgroundColor: AppColors.ActiveOpacity,
+  },
+  hr: {
+    width: '95%',
+    height: 1,
+    alignSelf: 'center',
+    borderWidth: 0.8,
+    borderColor: '#EBEDF2',
+  },
+  content: {
+    paddingLeft: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+  },
+  taskHeader: {
+    flex: 1.2,
+    flexDirection: Device.isTablet ? 'row' : 'column',
+  },
+  taskTitle: {
+    marginLeft: 6,
+    marginBottom: 6,
+    ...Fonts.Bold,
+    fontSize: 13,
+  },
+  taskTitleSuccess: {
+    marginLeft: 6,
+    marginBottom: 6,
+    ...Fonts.Bold,
+    fontSize: 13,
+    color: AppColors.Success,
+  },
+  taskTitleActive: {
+    marginLeft: 6,
+    marginBottom: 6,
+    ...Fonts.Bold,
+    fontSize: 13,
+    color: AppColors.Active,
+  },
+  taskInfo: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  taskInfoTop: {
+    flexDirection: 'row',
+    height: 'auto',
+  },
+  photoContainer: {
+    flexDirection: 'row',
+  },
+  taskInfoMain: {
+    flexDirection: 'row',
+    marginTop: Device.isTablet ? 12 : 20,
+    paddingVertical: 3,
+  },
+  locationIcon: {
+    marginLeft: 6,
+  },
+  measureContainer: {
+    flex: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  numberOfMeasure: {
+    width: Device.isTablet ? 88 : 64,
+    height: Device.isTablet ? 62 : 62,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 5,
+    marginTop: -5,
+    borderWidth: 1,
+    borderColor: '#EBEDF2',
+    borderRadius: 8,
+    backgroundColor: AppColors.White,
+  },
+  addressContainer: {
+    width: 130,
+    flex: Device.isTablet ? 2 : 5,
+    flexDirection: 'row',
+    marginTop: Device.isTablet ? 0 : 0,
+    marginLeft: -2,
+  },
+  titleContainer: {
+    flex: 1.3,
+  },
+  addressText: {
+    width: Device.isTablet ? 230 : 170,
+    marginTop: -2,
+    marginLeft: 3,
+    ...Fonts.Bold,
+    fontSize: Device.isTablet ? 13 : 12,
+    lineHeight: 20,
+    textDecorationLine: 'underline',
+  },
+  typeOfOrder: {
+    flex: 0.8,
+    alignItems: 'flex-end',
+  },
+  typeOfOrderText: {
+    width: Device.isTablet ? '70%' : '110%',
+    ...Fonts.Bold,
+    fontSize: Device.isTablet ? 16 : 14,
+    textAlign: 'right',
+  },
+  typeOfOrderSubText: {
+    color: '#878D9A',
+    textAlign: 'right',
+  },
+  buttonContainer: {
+    width: Device.isTablet ? 65 : 62,
+    height: Device.isTablet ? 65 : 62,
+    backgroundColor: AppColors.InactiveButton,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 2,
+    borderRadius: 8,
+  },
+  buttonSuccessContainerInactive: {
+    width: Device.isTablet ? 65 : 62,
+    height: Device.isTablet ? 65 : 62,
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: AppColors.InactiveButton,
+    borderRadius: 8,
+  },
+  buttonSuccessContainer: {
+    width: Device.isTablet ? 65 : 62,
+    height: Device.isTablet ? 65 : 62,
+    backgroundColor: AppColors.SuccessOpacity,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 2,
+    borderRadius: 8,
+  },
+  buttonActiveContainer: {
+    width: Device.isTablet ? 65 : 62,
+    height: Device.isTablet ? 65 : 62,
+    backgroundColor: AppColors.ActiveOpacity,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 2,
+    borderRadius: 8,
+  },
+  imagesContainer: {
+    width: 130,
+    marginLeft: 16,
+    marginRight: 5,
+  },
+  buttonText: {
+    color: AppColors.White,
+  },
+  buttonModalContainer: {
+    width: '100%',
+    marginTop: 10,
+    backgroundColor: AppColors.ButtonTextColor,
+    padding: 10,
+    borderRadius: 8,
+  },
+  buttonModalText: {
+    ...Fonts.Bold,
+    color: AppColors.White,
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  modalTitle: {
+    textAlign: 'center',
+    paddingVertical: 18,
+    ...Fonts.Bold,
+    fontSize: 20,
+  },
+  photoModalBody: {
+    width: Device.isTablet ? '80%' : '90%',
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  addPhotoModalCancelButtonText: {
+    ...Fonts.Bold,
+    textAlign: 'center',
+    color: AppColors.TaskColor,
+  },
+  addPhotoCompleteButton: {
+    width: '100%',
+    marginTop: 10,
+    backgroundColor: AppColors.ButtonTextColor,
+    padding: 20,
+    borderRadius: 8,
+  },
+  photoCounterText: {
+    ...Fonts.Bold,
+    color: AppColors.TaskColor,
+  },
+  photoCounterSuccessText: {
+    ...Fonts.Bold,
+    color: AppColors.Success,
+  },
+  closeOrderModalTextYes: {
+    backgroundColor: AppColors.Active,
+  },
+  closeOrderModalTextNo: {
+    backgroundColor: AppColors.Red,
+  },
+  closeOrderModalTitle: {
+    fontSize: 16,
+  },
+  dropDownsContainer: {
+    width: '100%',
+  },
+  measureText: {color: '#878D9A'},
+});
+
+export default OrderCardStyles;
